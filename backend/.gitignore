@@ -5,7 +5,6 @@
 
 # testing
 /coverage
-/.env
 
 .DS_Store
 .env.local
