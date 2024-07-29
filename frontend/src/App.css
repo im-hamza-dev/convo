@@ -5,8 +5,7 @@
   display: flex;
   background-position: center;
   background-size: cover;
-  background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
-}
+  background-image: linear-gradient(to right bottom, #6884ff, #7a56ac, #623464, #381c2c, #000000);}
 
 ::-webkit-scrollbar {
   width: 0px;

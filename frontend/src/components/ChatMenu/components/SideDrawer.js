@@ -131,10 +131,11 @@ function SideDrawer() {
       <Flex
         justify="space-between"
         align="center"
-        bg="brand.lightBg"
+        bg="brand.darkBg"
         w="100%"
         p="5px 10px 5px 10px"
-        h="70px"
+        h="80px"
+        borderRadius={10}
       >
         <div>
           <Menu>
@@ -168,17 +169,15 @@ function SideDrawer() {
           flex="1"
         >
           <Button
-            w={"90%"}
+            w={10}
             variant="ghost"
             onClick={onOpen}
             bg="brand.darkBg"
             color="brand.secondaryText"
+            borderRadius={30}
             _hover={{ backgroundColor: "#2a3942" }}
           >
             <i className="fas fa-search"></i>
-            <Text display={{ base: "none", md: "flex" }} px={4}>
-              Search User
-            </Text>
           </Button>
         </Tooltip>
         <Menu>

@@ -11,6 +11,7 @@ import ProfileModal from "../../Common/ProfileModal";
 import UpdateGroupChatModal from "../../Common/UpdateGroupChatModal";
 import ScrollableChat from "./ScrollableChat";
 import Lottie from "react-lottie";
+import { Avatar } from "@chakra-ui/avatar";
 import animationData from "../../../animations/typing.json";
 
 import io from "socket.io-client";
@@ -164,15 +165,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         <>
           <Text
             fontSize={{ base: "28px", md: "30px" }}
-            pb={3}
-            pt={2}
-            px={10}
+            px={5}
             w="100%"
             fontFamily="Work sans"
             d="flex"
             justifyContent={{ base: "space-between" }}
             alignItems="center"
-            pl="60px"
             h="70px"
             color="brand.secondaryText"
           >
@@ -184,7 +182,18 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             {messages &&
               (!selectedChat.isGroupChat ? (
                 <>
-                  {getSender(user, selectedChat.users)}
+                  <span>
+                    <Avatar
+                      size="sm"
+                      cursor="pointer"
+                      name={user.name}
+                      src={user.pic}
+                      marginRight={"4"}
+                      w={10}
+                      h={10}
+                    />
+                    {getSender(user, selectedChat.users)}
+                  </span>
                   <ProfileModal
                     user={getSenderFull(user, selectedChat.users)}
                   />
@@ -200,12 +209,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 </>
               ))}
           </Text>
+
           <Box
             display="flex"
             flexDir="column"
             justifyContent="flex-end"
             p={3}
-            bg="brand.darkBg"
             w="100%"
             h="100%"
             overflowY="hidden"
@@ -243,14 +252,19 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 <></>
               )}
               <Input
-                variant="filled"
-                placeholder="Type a message"
+                outline={"none !important"}
+                border={"none"}
+                placeholder="Type a message..."
                 value={newMessage}
                 onChange={typingHandler}
-                bg="brand.lightBg"
+                bg="transparent !important"
                 color={"brand.secondaryText"}
-                _hover={{ backgroundColor: "#2a3942" }}
-                outline={"none"}
+                _hover={{
+                  borderBottom: "1px solid #6884ff",
+
+                  outline: "none",
+                }}
+                borderRadius={0}
               />
             </FormControl>
           </Box>

@@ -13,9 +13,10 @@ const Chatpage = () => {
       <Box
         display="flex"
         justifyContent="space-between"
-        w="100%"
-        h="100vh"
-        gap={0}
+        w="90%"
+        h="90vh"
+        margin={"3% auto 0%"}
+        gap={10}
       >
         {user && (
           <>

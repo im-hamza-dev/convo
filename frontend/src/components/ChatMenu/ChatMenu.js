@@ -48,20 +48,25 @@ const ChatMenu = ({ fetchAgain }) => {
       display={{ base: selectedChat ? "none" : "flex", md: "flex" }}
       flexDir="column"
       alignItems="center"
-      bg="brand.darkBg"
+      // bg="brand.darkBg"
       w={{ base: "100%", md: "32%" }}
-      borderRight={"1px solid #2b353a"}
+      borderRadius={20}
+      overflow={"hidden"}
+      padding={4}
+      bg="rgba(29, 31, 43, 0.8)"
+      backdropBlur={5}
     >
       <SideDrawer />
 
       <Box
         d="flex"
         flexDir="column"
-        bg="brand.darkBg"
+        // bg="brand.darkBg"
         w="100%"
         h="100%"
         pt="10px"
         overflowY="hidden"
+        margin={1}
       >
         {chats ? (
           <Stack overflowY="scroll">
@@ -69,19 +74,20 @@ const ChatMenu = ({ fetchAgain }) => {
               <Box
                 onClick={() => setSelectedChat(chat)}
                 cursor="pointer"
-                bg={selectedChat === chat ? "brand.lightBg" : "brand.darkBg"}
+                bg={selectedChat === chat ? "brand.vlightBg" : "brand.darkBg"}
                 color={"white"}
-                _hover={{ background: "brand.lightBg" }}
+                _hover={{ background: "brand.vlightBg" }}
                 px={3}
                 py={2}
                 pl={"25px"}
                 key={chat._id}
                 colorScheme="brand"
-                borderBottom={"1px solid #2b353a"}
                 display="flex"
                 alignItems="center"
                 justifyContent={"flex-start"}
                 gap="20px"
+                borderRadius={10}
+                transition={0.2}
               >
                 <Box
                   borderRadius={"50%"}

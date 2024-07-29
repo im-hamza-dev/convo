@@ -10,11 +10,11 @@ const convoTheme = extendTheme({
   },
   colors: {
     brand: {
-      vlightBg: "#2a3942",
-      lightBg: "#202c33",
+      vlightBg: "#6884ff",
+      lightBg: "#252837",
       darkBg: "#1d1f2b",
-      brightPrimary: "#00a884", //brightGreen
-      primary: "#005d4b", //green
+      brightPrimary: "#6884ff", //brightGreen
+      primary: "#6884ff", //green
       primaryText: "white",
       secondaryText: "#D6D6D6",
     },
