@@ -131,31 +131,49 @@ const GroupChatModal = ({ children }) => {
         {children}
       </span>
 
-      <Modal onClose={onClose} isOpen={isOpen} isCentered>
+      <Modal onClose={onClose} isOpen={isOpen} isCentered borderRadius={20}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent
+          borderRadius={20}
+          padding={4}
+          bg="brand.darkBg"
+          boxShadow={
+            "0 4px 30px rgba(0, 0, 0, 0.15), inset 0 0 100px rgba(29, 31, 43, 0.4)"
+          }
+          color={"brand.secondaryText"}
+          transition={"0.1s"}
+        >
           <ModalHeader
-            fontSize="35px"
+            fontSize="20px"
             fontFamily="Work sans"
             d="flex"
             justifyContent="center"
+            color="brand.primaryText"
           >
             Create Group Chat
           </ModalHeader>
-          <ModalCloseButton />
+          <ModalCloseButton
+            color={"white"}
+            outline={"none"}
+            _hover={{
+              transform: "scale(1.2)",
+            }}
+          />
           <ModalBody d="flex" flexDir="column" alignItems="center">
             <FormControl>
               <Input
                 placeholder="Chat Name"
                 mb={3}
                 onChange={(e) => setGroupChatName(e.target.value)}
+                color={"brand.secondaryText"}
               />
             </FormControl>
             <FormControl>
               <Input
-                placeholder="Add Users eg: John, Piyush, Jane"
+                placeholder="Search Users"
                 mb={1}
                 onChange={(e) => handleSearch(e.target.value)}
+                color={"brand.secondaryText"}
               />
             </FormControl>
             <Box w="100%" d="flex" flexWrap="wrap">
@@ -169,7 +187,7 @@ const GroupChatModal = ({ children }) => {
             </Box>
             {loading ? (
               // <ChatLoading />
-              <div>Loading...</div>
+              <Box margin={"20px 0px"}>Loading...</Box>
             ) : (
               searchResult
                 ?.slice(0, 4)
@@ -183,7 +201,14 @@ const GroupChatModal = ({ children }) => {
             )}
           </ModalBody>
           <ModalFooter>
-            <Button onClick={handleSubmit}>Create Chat</Button>
+            <Button
+              onClick={handleSubmit}
+              bg={"brand.vlightBg"}
+              borderRadius={"25px"}
+              padding={"10px 30px"}
+            >
+              Create Chat
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

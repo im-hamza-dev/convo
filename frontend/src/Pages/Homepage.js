@@ -63,7 +63,7 @@ function Homepage() {
         justifyContent={"center"}
         alignContent={"center"}
         opacity={0}
-        transition="1s"
+        transition="1s ease"
         ref={authCardRef}
       >
         <Box
@@ -95,6 +95,10 @@ function Homepage() {
                 color: "white",
                 outline: "none !important",
               }}
+              _hover={{
+                opacity: "1",
+              }}
+              opacity={"0.7"}
               onClick={() => setSelectedView(homeViews.LOGIN)}
             >
               <Box as="span" marginRight={"10px"} fontWeight={"thin"}>

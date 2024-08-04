@@ -209,7 +209,16 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
 
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent
+          borderRadius={20}
+          padding={4}
+          bg="brand.darkBg"
+          boxShadow={
+            "0 4px 30px rgba(0, 0, 0, 0.15), inset 0 0 100px rgba(29, 31, 43, 0.4)"
+          }
+          color={"brand.secondaryText"}
+          transition={"0.1s"}
+        >
           <ModalHeader
             fontSize="35px"
             fontFamily="Work sans"

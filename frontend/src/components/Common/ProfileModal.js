@@ -32,7 +32,17 @@ const ProfileModal = ({ user, children }) => {
       )}
       <Modal size="lg" onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
-        <ModalContent h="410px">
+        <ModalContent
+          h="410px"
+          borderRadius={20}
+          padding={4}
+          bg="brand.darkBg"
+          boxShadow={
+            "0 4px 30px rgba(0, 0, 0, 0.15), inset 0 0 100px rgba(29, 31, 43, 0.4)"
+          }
+          color={"brand.secondaryText"}
+          transition={"0.1s"}
+        >
           <ModalHeader
             fontSize="40px"
             fontFamily="Work sans"
@@ -62,7 +72,14 @@ const ProfileModal = ({ user, children }) => {
             </Text>
           </ModalBody>
           <ModalFooter>
-            <Button onClick={onClose}>Close</Button>
+            <Button
+              onClick={onClose}
+              bg={"brand.vlightBg"}
+              borderRadius={"25px"}
+              padding={"10px 30px"}
+            >
+              Close
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
