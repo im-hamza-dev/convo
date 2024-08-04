@@ -4,12 +4,13 @@ const convoTheme = extendTheme({
   components: {
     Button: {
       defaultProps: {
-        colorScheme: "teal",
+        colorScheme: "brand.vlightBg",
       },
     },
   },
   colors: {
     brand: {
+      lightBlurBg:'rgba(29, 31, 43, 0.4)',
       vlightBg: "#6884ff",
       lightBg: "#252837",
       darkBg: "#1d1f2b",
