@@ -1,6 +1,6 @@
 import { Box, Stack, Text } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
-import axiosApi from "../../services/axiosInstance";
+import axiosApi from "../../api/axiosInstance";
 import { useEffect, useState } from "react";
 import { getSender } from "../../config/ChatLogics";
 import ChatLoading from "../Common/ChatLoading";

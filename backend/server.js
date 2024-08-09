@@ -18,7 +18,7 @@ app.use(cors());
 app.use("/api/user", userRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/message", messageRoutes);
-
+app.options("*", cors())
 // --------------------------deployment------------------------------
 
 const __dirname1 = path.resolve();
@@ -51,9 +51,10 @@ const server = app.listen(
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "http://localhost:3000",
+    origin: "*",
     // credentials: true,
   },
+  allowEIO3: true
 });
 
 io.on("connection", (socket) => {

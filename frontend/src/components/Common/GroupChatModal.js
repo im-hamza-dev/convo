@@ -13,7 +13,7 @@ import {
   useToast,
   Box,
 } from "@chakra-ui/react";
-import axiosApi from "../../services/axiosInstance";
+import axiosApi from "../../api/axiosInstance";
 import { useState } from "react";
 import { ChatState } from "../../Context/ChatProvider";
 import UserBadgeItem from "../UserAvatar/UserBadgeItem";

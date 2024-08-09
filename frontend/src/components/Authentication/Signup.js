@@ -5,7 +5,7 @@ import { VStack } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
 import { useState } from "react";
 import { useHistory } from "react-router";
-import axiosApi from "../../services/axiosInstance";
+import axiosApi from "../../api/axiosInstance";
 
 const Signup = () => {
   const [show, setShow] = useState(false);

@@ -25,7 +25,7 @@ import { BellIcon } from "@chakra-ui/icons";
 import { Avatar } from "@chakra-ui/avatar";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
-import axiosApi from "../../../services/axiosInstance";
+import axiosApi from "../../../api/axiosInstance";
 import { useToast } from "@chakra-ui/toast";
 import ChatLoading from "../../Common/ChatLoading";
 import { Spinner } from "@chakra-ui/spinner";
