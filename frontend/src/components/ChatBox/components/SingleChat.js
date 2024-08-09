@@ -16,7 +16,7 @@ import animationData from "../../../animations/typing.json";
 
 import io from "socket.io-client";
 import { ChatState } from "../../../Context/ChatProvider";
-const ENDPOINT = "http://localhost:5000"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
+import { BASE_URL_LOCAL, BASE_URL_PROD } from "../../../utils/environmentStates";
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
@@ -106,7 +106,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   };
 
   useEffect(() => {
-    socket = io(ENDPOINT);
+    let baseURL = window?.location.href.includes('localhost') ? BASE_URL_LOCAL : BASE_URL_PROD
+    socket = io(baseURL);
     socket.emit("setup", user);
     socket.on("connected", () => setSocketConnected(true));
     socket.on("typing", () => setIsTyping(true));
