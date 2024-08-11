@@ -3,7 +3,7 @@ import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
 import { VStack } from "@chakra-ui/layout";
 import { useState } from "react";
-import axiosApi from "../../api/axiosInstance";
+import { post, setHeaderToken } from "../../api/axiosInstance";
 import { useToast } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
 import { ChatState } from "../../Context/ChatProvider";
@@ -34,18 +34,11 @@ const Login = () => {
     }
 
     try {
-      const config = {
-        headers: {
-          "Content-type": "application/json",
-        },
-      };
-
-      const { data } = await axiosApi.post(
-        "/api/user/login",
-        { email, password },
-        config
-      );
-
+      const data = await post("/api/user/login", { email, password });
+      console.log(data);
+      if (data.error) {
+        throw new Error(data.error.message);
+      }
       toast({
         title: "Login Successful",
         status: "success",
@@ -53,21 +46,27 @@ const Login = () => {
         isClosable: true,
         position: "bottom",
       });
-      setUser(data);
-      localStorage.setItem("userInfo", JSON.stringify(data));
-      setLoading(false);
-      history.push("/chats");
+      proceedLogin(data);
     } catch (error) {
+      console.log(error.message);
       toast({
         title: "Error Occured!",
-        description: error.response.data.message,
+        description: error.message,
         status: "error",
         duration: 5000,
         isClosable: true,
         position: "bottom",
       });
+    } finally {
       setLoading(false);
     }
+  };
+
+  const proceedLogin = (data) => {
+    setUser(data);
+    setHeaderToken(data);
+    localStorage.setItem("userInfo", JSON.stringify(data));
+    history.push("/chats");
   };
 
   return (

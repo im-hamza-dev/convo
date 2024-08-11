@@ -16,7 +16,11 @@ import animationData from "../../../animations/typing.json";
 
 import io from "socket.io-client";
 import { ChatState } from "../../../Context/ChatProvider";
-import { BASE_URL_LOCAL, BASE_URL_PROD } from "../../../utils/environmentStates";
+import {
+  BASE_URL_LOCAL,
+  BASE_URL_PROD,
+} from "../../../utils/environmentStates";
+import { get, post } from "../../../api/axiosInstance";
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
@@ -43,18 +47,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     if (!selectedChat) return;
 
     try {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      };
-
       setLoading(true);
 
-      const { data } = await axios.get(
-        `/api/message/${selectedChat._id}`,
-        config
-      );
+      const data = await get(`/api/message/${selectedChat._id}`);
       setMessages(data);
       setLoading(false);
 
@@ -75,21 +70,11 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     if (event.key === "Enter" && newMessage) {
       socket.emit("stop typing", selectedChat._id);
       try {
-        const config = {
-          headers: {
-            "Content-type": "application/json",
-            Authorization: `Bearer ${user.token}`,
-          },
-        };
         setNewMessage("");
-        const { data } = await axios.post(
-          "/api/message",
-          {
-            content: newMessage,
-            chatId: selectedChat,
-          },
-          config
-        );
+        const data = await post("/api/message", {
+          content: newMessage,
+          chatId: selectedChat,
+        });
         socket.emit("new message", data);
         setMessages([...messages, data]);
       } catch (error) {
@@ -106,7 +91,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   };
 
   useEffect(() => {
-    let baseURL = window?.location.href.includes('localhost') ? BASE_URL_LOCAL : BASE_URL_PROD
+    let baseURL = window?.location.href.includes("localhost")
+      ? BASE_URL_LOCAL
+      : BASE_URL_PROD;
     socket = io(baseURL);
     socket.emit("setup", user);
     socket.on("connected", () => setSocketConnected(true));

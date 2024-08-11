@@ -25,7 +25,7 @@ import { BellIcon } from "@chakra-ui/icons";
 import { Avatar } from "@chakra-ui/avatar";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
-import axiosApi from "../../../api/axiosInstance";
+import { get, post } from "../../../api/axiosInstance";
 import { useToast } from "@chakra-ui/toast";
 import ChatLoading from "../../Common/ChatLoading";
 import { Spinner } from "@chakra-ui/spinner";
@@ -75,13 +75,7 @@ function SideDrawer() {
     try {
       setLoading(true);
 
-      const config = {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      };
-
-      const { data } = await axiosApi.get(`/api/user?search=${search}`, config);
+      const data = await get(`/api/user?search=${search}`);
 
       setLoading(false);
       setSearchResult(data);
@@ -102,13 +96,8 @@ function SideDrawer() {
 
     try {
       setLoadingChat(true);
-      const config = {
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-      };
-      const { data } = await axiosApi.post(`/api/chat`, { userId }, config);
+
+      const data = await post(`/api/chat`, { userId });
 
       if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
       setSelectedChat(data);

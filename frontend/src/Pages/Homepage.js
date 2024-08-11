@@ -57,7 +57,7 @@ function Homepage() {
         w="100%"
         p={4}
         borderRadius="20px"
-        height="80vh"
+        height="90vh"
         display={"flex"}
         flexDir={"row"}
         justifyContent={"center"}

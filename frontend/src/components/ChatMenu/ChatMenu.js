@@ -1,6 +1,6 @@
 import { Box, Stack, Text } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
-import axiosApi from "../../api/axiosInstance";
+import { get } from "../../api/axiosInstance";
 import { useEffect, useState } from "react";
 import { getSender } from "../../config/ChatLogics";
 import ChatLoading from "../Common/ChatLoading";
@@ -10,20 +10,14 @@ import SideDrawer from "./components/SideDrawer";
 const ChatMenu = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
 
-  const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
+  const { selectedChat, setSelectedChat, chats, setChats } = ChatState();
 
   const toast = useToast();
 
   const fetchChats = async () => {
     // console.log(user._id);
     try {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      };
-
-      const { data } = await axiosApi.get("/api/chat", config);
+      const data = await get("/api/chat");
       setChats(data);
     } catch (error) {
       toast({

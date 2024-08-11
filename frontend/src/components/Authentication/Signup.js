@@ -50,7 +50,7 @@ const Signup = () => {
           "Content-type": "application/json",
         },
       };
-      const { data } = await axiosApi.post(
+      const data = await axiosApi.post(
         "/api/user",
         {
           name,
